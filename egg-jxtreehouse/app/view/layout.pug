@@ -1,0 +1,99 @@
+block variables
+
+- const appTitle = '镜心的小树屋'
+- const appKeywords = ['J站','镜心的小树屋','读书','笔记','问答','专栏','二次元','程序员','历史','大数据','机器学习']
+- const appDescription = 'jxtreehouse,jxdxsw是国内知名的社区'
+
+doctype html
+html(lang='zh')
+  head
+    block head
+      meta(charset = 'utf-8')
+      title = pageTitle ? `${pageTitle} | ${appTitle}` : appTitle
+      meta(http-equiv='X-UA-Compatible' content='IE-edge')
+      meta(name='keywords' content=(pageKeywords || appKeywords).join())
+      meta(name='description' content=pageDescription || appDescription)
+      meta(name='viewport' content='width=device-width,initial-scale=1,shrink-to-fit=no')
+      link(href='/public/images/favicon.png', rel="icon" type='image/png')
+      if ui && ui.name !== 'default'
+        link(rel='stylesheet' href=`/public/lib/bootswatch-4.0.0-beta.3/${ui.name}/bootstrap.min.css` media='all')
+      else
+        link(rel='stylesheet' href='/public/css/bootstrap-4.0.0-beta.3.min.css' media='all')
+      link(href='/public/css/font-awesome-4.7.0.min.css', rel='stylesheet' media='all')
+
+      if summernote
+        link(rel='stylesheet' href='/public/lib/summernote-0.8.8/summernote-0.8.8/summernote-bs4.min.css' media='all')
+      link(rel='stylesheet' href='/public/css/bootstrap-theme-0.1.0.css' media='all')
+
+  body 
+    block body
+      nav.navbar.navbar-expand-md.nav-dark.bg-dark
+        .container
+          a.navbar-brand(href='/')=  appTitle
+          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
+            span.navbar-toggler-icon
+          #nav-links.collapse.navbar-collapse
+            ul.navbar-nav.mr-auto
+              li.nav-item.mr-2
+                a.nav-link(href='#').
+                  #[i.fa.fa-fw]首页
+              li.nav-item.dropdown.mr-2
+                a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+                  #[i.fa.fa-fw]读书
+                .dropdown-menu                
+                  a.dropdown-item(href='/book/find').
+                    #[i.fa.fa-fw.fa-shopping-cart]发现
+                  a.dropdown-item(href='/book/idea').
+                    #[i.fa.fa-fw.fa-pencil-square-o] 想法
+                  //- if user.isLogin
+                  //-   a.dropdown-item(href=`/book/user/${user.uid}`).
+                  //-     #[i.fa.fa-fw.fa-book]我的书架
+                  //-   a.dropdown-item(href=`/book/marks/user/${user.uid}`).
+                  //-     #[i.fa.fa-fw.fa-bookmark]我的收藏
+              li.nav-item.dropdown.mr-2
+                a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+                  #[i.fa.fa-fw]问答
+                .dropdown-menu                  
+                  a.dropdown-item(href='/question/ask').
+                    #[i.fa.fa-fw.fa-question-circle]提问
+                  a.dropdown-item(href='/question/answer').
+                    #[i.fa.fa-fw.fa-file-text]回答
+                  a.dropdown-item(href='/question/article').
+                    #[i.fa.fa-fw.fa-pencil-square]文章
+                  //- if user.isLogin
+                  //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
+                  //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
+              li.nav-item.dropdown.mr-2
+                a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+                  #[i.fa.fa-fw]历史
+                .dropdown-menu                  
+                  a.dropdown-item(href='/question/ask').
+                    #[i.fa.fa-fw.fa-question-circle]
+                  a.dropdown-item(href='/question/answer').
+                    #[i.fa.fa-fw.fa-file-text]回答
+                  a.dropdown-item(href='/question/article').
+                    #[i.fa.fa-fw.fa-pencil-square]文章
+                  //- if user.isLogin//
+                  //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
+                  //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
+    block foot 
+      script(src='/public/js/jquery-3.2.1.min.js')
+      script(src='/public/js/popper-1.12.9.min.js')
+      script(src='/public/js/bootstrap-4.0.0-beta.3.min.js')
+      if echarts
+        script(src='/public/js/echarts-3.8.4.min.js')
+      if calendar
+        script(src='/public/js/calendar-0.1.2.js')
+      if summernote
+        script(src='/public/lib/summernote-0.8.8/summernote-bs4.min.js')
+        script(src='/public/lib/summernote-0.8.8/lang/summernote-zh-CN.js')
+        script(src='/public/js/editor-0.1.3.js')
+      if tagging
+        script(src='/public/js/tagging-0.1.1.js')
+ 
+      
+      
+                      
+              
+      
+      

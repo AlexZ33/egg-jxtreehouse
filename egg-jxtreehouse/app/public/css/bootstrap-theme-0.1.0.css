@@ -1,0 +1,52 @@
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+img {
+  max-width: 100%;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.tag-list > span[draggable='true'] {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.tag-list > span[draggable='true']:hover {
+  padding: 0.15em 0.4em;
+}
+
+.tag-list > span > i {
+  cursor: pointer;
+}
+
+.card-header-inline {
+  margin-top: -3px;
+}
+
+.card-header-inline > input {
+  line-height: 1;
+  padding-bottom: 0;
+  padding-top: 0;
+  text-align: center;
+  width: 4.5em !important;
+}
+
+.card-header-inline > input:focus {
+  width: 7.5em !important;
+}
+
+.card-header-inline > span > .input-group-text {
+  line-height: 1;
+}
