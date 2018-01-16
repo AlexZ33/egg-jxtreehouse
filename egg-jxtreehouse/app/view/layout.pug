@@ -6,8 +6,14 @@ block variables
 
 doctype html
 html(lang='zh')
+  - const cache = ctx.app.cache
+  - const config = ctx.app.config
+  - const theme =  config.theme
+  - const brand = config.theme.brand
+  - const company =  config.theme.company
   head
     block head
+      - const ui = theme.ui || {}
       meta(charset = 'utf-8')
       title = pageTitle ? `${pageTitle} | ${appTitle}` : appTitle
       meta(http-equiv='X-UA-Compatible' content='IE-edge')
@@ -76,12 +82,24 @@ html(lang='zh')
                   //- if user.isLogin//
                   //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
                   //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
+    footer.navbar.navbar-expand-md.navbar-dark.bg-dark
+      .container.navbar-text
+        if company.url
+          a(href = company.url target ='_blank')= company.name
+        else
+          span = company.name
+        span.float-right
+          a.mr-1(href='http://jxdxsw.com' target='_blank')
+          span 友情关联
     block foot 
       script(src='/public/js/jquery-3.2.1.min.js')
       script(src='/public/js/popper-1.12.9.min.js')
       script(src='/public/js/bootstrap-4.0.0-beta.3.min.js')
       if echarts
         script(src='/public/js/echarts-3.8.4.min.js')
+      if g2
+        script(src='/public/js/g2-3.0.4-beta.2.min.js')
+        script(src='/public/js/data-set-0.8.3.min.js')
       if calendar
         script(src='/public/js/calendar-0.1.2.js')
       if summernote

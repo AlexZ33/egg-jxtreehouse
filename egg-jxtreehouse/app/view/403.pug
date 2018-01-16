@@ -1,0 +1,7 @@
+extends layout
+
+block append main
+    .alert.alert-danger
+        p.lead.mt-3 = message || '你没有访问该页面的权限，请登录帐号或者联系管理员'
+        if link
+            a.btn.btn-info(href=link)查看详情
