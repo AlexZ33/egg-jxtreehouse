@@ -9,3 +9,9 @@ exports.pug = {
     enable: true,
     package: 'egg-view-pug',
 };
+
+//MongoDB plugin
+exports.mongoose = {
+    enable: true,
+    package: 'egg-mongoose',
+};

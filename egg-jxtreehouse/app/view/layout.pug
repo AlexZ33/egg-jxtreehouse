@@ -8,9 +8,9 @@ doctype html
 html(lang='zh')
   - const cache = ctx.app.cache
   - const config = ctx.app.config
-  - const theme =  config.theme
-  - const brand = config.theme.brand
-  - const company =  config.theme.company
+  - const theme =  cache.theme || config.theme
+  - const brand = theme.brand || config.theme.brand
+  - const company =  theme.company || config.theme.company
   head
     block head
       - const ui = theme.ui || {}
@@ -21,11 +21,13 @@ html(lang='zh')
       meta(name='description' content=pageDescription || appDescription)
       meta(name='viewport' content='width=device-width,initial-scale=1,shrink-to-fit=no')
       link(href='/public/images/favicon.png', rel="icon" type='image/png')
+      link(rel='stylesheet' href='/public/css/font-awesome-4.7.0.min.css' media='all')
       if ui && ui.name !== 'default'
         link(rel='stylesheet' href=`/public/lib/bootswatch-4.0.0-beta.3/${ui.name}/bootstrap.min.css` media='all')
       else
         link(rel='stylesheet' href='/public/css/bootstrap-4.0.0-beta.3.min.css' media='all')
-      link(href='/public/css/font-awesome-4.7.0.min.css', rel='stylesheet' media='all')
+
+
 
       if summernote
         link(rel='stylesheet' href='/public/lib/summernote-0.8.8/summernote-0.8.8/summernote-bs4.min.css' media='all')
@@ -35,7 +37,7 @@ html(lang='zh')
     block body
       nav.navbar.navbar-expand-md.nav-dark.bg-dark
         .container
-          a.navbar-brand(href='/')=  appTitle
+          a.navbar-brand(href='/')=  brand.name
           button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
             span.navbar-toggler-icon
           #nav-links.collapse.navbar-collapse
@@ -48,9 +50,9 @@ html(lang='zh')
                   #[i.fa.fa-fw]读书
                 .dropdown-menu                
                   a.dropdown-item(href='/book/find').
-                    #[i.fa.fa-fw.fa-shopping-cart]发现
+                    #[i.fa.fa-fw.fa-shopping-cart] 发现
                   a.dropdown-item(href='/book/idea').
-                    #[i.fa.fa-fw.fa-pencil-square-o] 想法
+                    #[i.fa.fa-fw.fa-pencil-square] 想法
                   //- if user.isLogin
                   //-   a.dropdown-item(href=`/book/user/${user.uid}`).
                   //-     #[i.fa.fa-fw.fa-book]我的书架
@@ -58,30 +60,72 @@ html(lang='zh')
                   //-     #[i.fa.fa-fw.fa-bookmark]我的收藏
               li.nav-item.dropdown.mr-2
                 a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-                  #[i.fa.fa-fw]问答
+                  #[i.fa.fa-fw] 问答
                 .dropdown-menu                  
                   a.dropdown-item(href='/question/ask').
-                    #[i.fa.fa-fw.fa-question-circle]提问
+                    #[i.fa.fa-fw.fa-question-circle] 提问
                   a.dropdown-item(href='/question/answer').
-                    #[i.fa.fa-fw.fa-file-text]回答
+                    #[i.fa.fa-fw.fa-file-text] 回答
                   a.dropdown-item(href='/question/article').
-                    #[i.fa.fa-fw.fa-pencil-square]文章
+                    #[i.fa.fa-fw.fa-pencil-square] 文章
                   //- if user.isLogin
                   //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
                   //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
               li.nav-item.dropdown.mr-2
                 a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-                  #[i.fa.fa-fw]历史
+                  #[i.fa.fa-fw] 历史
                 .dropdown-menu                  
                   a.dropdown-item(href='/question/ask').
                     #[i.fa.fa-fw.fa-question-circle]
                   a.dropdown-item(href='/question/answer').
-                    #[i.fa.fa-fw.fa-file-text]回答
+                    #[i.fa.fa-fw.fa-file-text] 回答
                   a.dropdown-item(href='/question/article').
-                    #[i.fa.fa-fw.fa-pencil-square]文章
+                    #[i.fa.fa-fw.fa-pencil-square] 文章
                   //- if user.isLogin//
                   //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
                   //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
+              form.d-none.d-lg-inline-block.mr-lg-4(action='/search' method='get')
+                .input-group
+                  input.form-control(type='text' name='q' placeholder='搜索问题或关键字')
+                  span.input-group-append
+                    button.btn.btn-primary(type='submit'): i.fa.fa-fw.fa-search
+
+            if user.isLogin
+              button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
+                span.navbar-toggler-icon
+              #nav-links.collapse.navbar-collapse
+                ul.navbar-nav.mr-auto
+                  li.nav-item.dropdown.mr-2
+                  li.nav-item.dropdown.mr-2
+                    a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+                      #[i.fa.fa-fw.fa-bell-o]
+                  li.nav-item.dropdown.mr-2
+                    a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+                      #[i.fa.fa-fw.fa-envelope-o]
+                  li.nav-item.dropdown.mr-2
+                    a.rounded-circle.nav-link.nav-item.dropdown-toggle(href='#' data-toggle='dropdown' style="background-image: url('https://sfault-avatar.b0.upaiyun.com/356/113/3561133448-58e8bdf9b711b_big64')")
+                    .dropdown-menu
+                      a.dropdown-item(href='/user').
+                        #[i.fa.fa-fw.fa-search] 用户查询
+                      a.dropdown-item(href='/user/new').
+                        #[i.fa.fa-fw.fa-plus-circle] 新建用户
+                      a.dropdown-item(href=`/user/${user.uid}/view`).
+                        #[i.fa.fa-fw.fa-newspaper-o] 我的账号
+                      a.dropdown-item(href='/user/account').
+                        #[i.fa.fa-fw.fa-user-circle-o] 账号设置
+                      a.dropdown-item(href='/admin/label').
+                        #[i.fa.fa-fw.fa-tags] 管理标签
+                      a.dropdown-item(href='/admin/theme').
+                        #[i.fa.fa-fw.fa-cogs] 系统设置
+                      a.dropdown-item(href='/auth/logout').
+                        #[i.fa.fa-fw.fa-sign-out] 退出
+            else
+              form.form-inline.my-2.my-lg-0(action='/auth/login' method='post')
+                input(type='hidden' name='_csrf' value=ctx.csrf)
+                input.form-control.col-sm-4(type='text' name='account' placeholder='账号' required)
+                input.form-control.col-sm-4.my-2.my-sm-0(type='password' name='password' placeholder='密码' required)
+                button.btn.btn-sucess.btn-block.col-sm-2(type='submit') 登录
+                button.btn.btn-sucess.btn-block.col-sm-2(type='button') 注册
     footer.navbar.navbar-expand-md.navbar-dark.bg-dark
       .container.navbar-text
         if company.url

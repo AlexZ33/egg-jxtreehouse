@@ -44,6 +44,13 @@ module.exports = appInfo => {
         ],
     };
 
+
+    // MongoDB
+    config.mongoose = {
+        url: 'mongodb://localhost:27017/management',
+        options: {},
+    };
+
     //Pug template 
     config.view = {
         defaultViewEngine: 'pug',
