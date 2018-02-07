@@ -90,42 +90,42 @@ html(lang='zh')
                   span.input-group-append
                     button.btn.btn-primary(type='submit'): i.fa.fa-fw.fa-search
 
-            if user.isLogin
-              button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
-                span.navbar-toggler-icon
-              #nav-links.collapse.navbar-collapse
-                ul.navbar-nav.mr-auto
-                  li.nav-item.dropdown.mr-2
-                  li.nav-item.dropdown.mr-2
-                    a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-                      #[i.fa.fa-fw.fa-bell-o]
-                  li.nav-item.dropdown.mr-2
-                    a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-                      #[i.fa.fa-fw.fa-envelope-o]
-                  li.nav-item.dropdown.mr-2
-                    a.rounded-circle.nav-link.nav-item.dropdown-toggle(href='#' data-toggle='dropdown' style="background-image: url('https://sfault-avatar.b0.upaiyun.com/356/113/3561133448-58e8bdf9b711b_big64')")
-                    .dropdown-menu
-                      a.dropdown-item(href='/user').
-                        #[i.fa.fa-fw.fa-search] 用户查询
-                      a.dropdown-item(href='/user/new').
-                        #[i.fa.fa-fw.fa-plus-circle] 新建用户
-                      a.dropdown-item(href=`/user/${user.uid}/view`).
-                        #[i.fa.fa-fw.fa-newspaper-o] 我的账号
-                      a.dropdown-item(href='/user/account').
-                        #[i.fa.fa-fw.fa-user-circle-o] 账号设置
-                      a.dropdown-item(href='/admin/label').
-                        #[i.fa.fa-fw.fa-tags] 管理标签
-                      a.dropdown-item(href='/admin/theme').
-                        #[i.fa.fa-fw.fa-cogs] 系统设置
-                      a.dropdown-item(href='/auth/logout').
-                        #[i.fa.fa-fw.fa-sign-out] 退出
-            else
-              form.form-inline.my-2.my-lg-0(action='/auth/login' method='post')
-                input(type='hidden' name='_csrf' value=ctx.csrf)
-                input.form-control.col-sm-4(type='text' name='account' placeholder='账号' required)
-                input.form-control.col-sm-4.my-2.my-sm-0(type='password' name='password' placeholder='密码' required)
-                button.btn.btn-sucess.btn-block.col-sm-2(type='submit') 登录
-                button.btn.btn-sucess.btn-block.col-sm-2(type='button') 注册
+            //if user.isLogin
+            //  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
+            //    span.navbar-toggler-icon
+            //  #nav-links.collapse.navbar-collapse
+            //    ul.navbar-nav.mr-auto
+            //      li.nav-item.dropdown.mr-2
+            //      li.nav-item.dropdown.mr-2
+            //        a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+            //          #[i.fa.fa-fw.fa-bell-o]
+            //      li.nav-item.dropdown.mr-2
+            //        a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+            //          #[i.fa.fa-fw.fa-envelope-o]
+            //      li.nav-item.dropdown.mr-2
+            //        a.rounded-circle.nav-link.nav-item.dropdown-toggle(href='#' data-toggle='dropdown' style="background-image: url('https://sfault-avatar.b0.upaiyun.com/356/113/3561133448-58e8bdf9b711b_big64')")
+            //        .dropdown-menu
+            //          a.dropdown-item(href='/user').
+            //            #[i.fa.fa-fw.fa-search] 用户查询
+            //          a.dropdown-item(href='/user/new').
+            //            #[i.fa.fa-fw.fa-plus-circle] 新建用户
+            //          a.dropdown-item(href=`/user/${user.uid}/view`).
+            //            #[i.fa.fa-fw.fa-newspaper-o] 我的账号
+            //          a.dropdown-item(href='/user/account').
+            //            #[i.fa.fa-fw.fa-user-circle-o] 账号设置
+            //          a.dropdown-item(href='/admin/label').
+            //            #[i.fa.fa-fw.fa-tags] 管理标签
+            //          a.dropdown-item(href='/admin/theme').
+            //            #[i.fa.fa-fw.fa-cogs] 系统设置
+            //          a.dropdown-item(href='/auth/logout').
+            //            #[i.fa.fa-fw.fa-sign-out] 退出
+            //else
+            //  form.form-inline.my-2.my-lg-0(action='/auth/login' method='post')
+            //    input(type='hidden' name='_csrf' value=ctx.csrf)
+            //    input.form-control.col-sm-4(type='text' name='account' placeholder='账号' required)
+            //    input.form-control.col-sm-4.my-2.my-sm-0(type='password' name='password' placeholder='密码' required)
+            //    button.btn.btn-sucess.btn-block.col-sm-2(type='submit') 登录
+            //    button.btn.btn-sucess.btn-block.col-sm-2(type='button') 注册
     footer.navbar.navbar-expand-md.navbar-dark.bg-dark
       .container.navbar-text
         if company.url
@@ -139,6 +139,9 @@ html(lang='zh')
       script(src='/public/js/jquery-3.2.1.min.js')
       script(src='/public/js/popper-1.12.9.min.js')
       script(src='/public/js/bootstrap-4.0.0-beta.3.min.js')
+      if aframe
+        script(src='/public/js/aframe.min.js')
+        script(src='/public/js/aframe-href-component.js')
       if echarts
         script(src='/public/js/echarts-3.8.4.min.js')
       if g2

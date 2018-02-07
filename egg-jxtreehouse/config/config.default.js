@@ -47,7 +47,7 @@ module.exports = appInfo => {
 
     // MongoDB
     config.mongoose = {
-        url: 'mongodb://localhost:27017/management',
+        url: 'mongodb://localhost:27017/jxtreehouse',
         options: {},
     };
 
