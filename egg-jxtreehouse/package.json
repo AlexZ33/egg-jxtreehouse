@@ -7,10 +7,16 @@
     "cors": "^2.8.4",
     "egg": "^2.2.0",
     "egg-cors": "^2.0.0",
+    "egg-graphql": "^2.3.0",
     "egg-mongoose": "^2.1.1",
     "egg-scripts": "^2.1.0",
     "egg-security": "^2.0.0",
+    "egg-sequelize": "^4.2.0",
+    "egg-validate": "^2.0.2",
     "egg-view-pug": "^1.0.0",
+    "exceljs": "^1.6.3",
+    "koa-compress": "^3.0.0",
+    "ramda": "^0.25.0",
     "stream-wormhole": "^1.0.3"
   },
   "devDependencies": {

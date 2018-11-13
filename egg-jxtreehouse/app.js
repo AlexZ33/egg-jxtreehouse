@@ -1,5 +1,6 @@
 module.exports = app => {
-    app.beforeStart(() => {
-        console.log("镜心欢迎您")
-    })
+  app.beforeStart(() => {
+    console.log("镜心欢迎您")
+    
+  })
 }

@@ -1,5 +1,6 @@
 module.exports = app => {
   const mongoose = app.mongoose;
+  const { ObjectId } = mongoose.Schema.Types
   const departmentSchema = new mongoose.Schema({
     name: {
       type: String,
@@ -102,6 +103,10 @@ module.exports = app => {
       type: [labelSchema],
       required: [true, 'At least one label is required.'],
     },
+    groupId: {
+      type: [ ObjectId],
+      required: [true, 'The user department should be specified']
+    },
     status: {
       type: String,
       enum: ['Active', 'Absent', 'Unavailable', 'Resigned', 'Deleted'],
@@ -168,10 +173,14 @@ module.exports = app => {
       required: [true, 'The updated time should be specified.'],
       index: true,
     },
+    isDeleted: {
+      type: Boolean,
+      default: false
+    }
   }, {
     collection: 'users',
     minimize: false,
-    versionKey: 'version',
+    versionKey: 'version'
   });
 
   return mongoose.model('User', userSchema);
