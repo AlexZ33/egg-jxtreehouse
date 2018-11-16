@@ -2,7 +2,7 @@
 exports.static = true;
 
 // Security plugin
-exports.security = true;
+// exports.security = true;
 
 //Plug plugin 
 exports.pug = {

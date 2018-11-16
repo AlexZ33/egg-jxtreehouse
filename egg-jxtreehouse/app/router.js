@@ -12,6 +12,6 @@ module.exports = app => {
   router.get('/', home.index);
 
   //Auth
-  router.post('/auth/login', auth.login);
+  // router.post('/auth/login', auth.login);
   // router.get('/auth/logout', middlewares.islogin, auth.logout);
 };
