@@ -32,6 +32,9 @@ html(lang='zh')
       if summernote
         link(rel='stylesheet' href='/public/lib/summernote-0.8.8/summernote-0.8.8/summernote-bs4.min.css' media='all')
       link(rel='stylesheet' href='/public/css/bootstrap-theme-0.1.0.css' media='all')
+      if aframe
+        script(src='/public/js/aframe.min.js')
+        script(src='/public/js/aframe-href-component.js')
 
   body 
     block body
@@ -139,9 +142,6 @@ html(lang='zh')
       script(src='/public/js/jquery-3.2.1.min.js')
       script(src='/public/js/popper-1.12.9.min.js')
       script(src='/public/js/bootstrap-4.0.0-beta.3.min.js')
-      if aframe
-        script(src='/public/js/aframe.min.js')
-        script(src='/public/js/aframe-href-component.js')
       if echarts
         script(src='/public/js/echarts-3.8.4.min.js')
       if g2
