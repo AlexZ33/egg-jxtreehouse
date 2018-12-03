@@ -29,6 +29,7 @@
   },
   "scripts": {
     "start": "egg-scripts start --port=8001 --daemon",
+    "dev": "egg-bin dev --port 7001",
     "stop": "egg-scripts stop",
     "dev": "egg-bin dev",
     "debug": "egg-bin debug",
@@ -37,7 +38,8 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run autod -- --check && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "mongod": "sudo mongod --config config/mongodb.conf"
   },
   "ci": {
     "version": "8"
