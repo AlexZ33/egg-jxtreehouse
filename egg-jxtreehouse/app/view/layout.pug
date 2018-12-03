@@ -37,110 +37,113 @@ html(lang='zh')
         script(src='/public/js/aframe-href-component.js')
 
   body 
-    block body
-      nav.navbar.navbar-expand-md.nav-dark.bg-dark
-        .container
-          a.navbar-brand(href='/')=  brand.name
-          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
-            span.navbar-toggler-icon
-          #nav-links.collapse.navbar-collapse
-            ul.navbar-nav.mr-auto
-              li.nav-item.mr-2
-                a.nav-link(href='#').
-                  #[i.fa.fa-fw]首页
-              li.nav-item.dropdown.mr-2
-                a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-                  #[i.fa.fa-fw]读书
-                .dropdown-menu                
-                  a.dropdown-item(href='/book/find').
-                    #[i.fa.fa-fw.fa-shopping-cart] 发现
-                  a.dropdown-item(href='/book/idea').
-                    #[i.fa.fa-fw.fa-pencil-square] 想法
-                  //- if user.isLogin
-                  //-   a.dropdown-item(href=`/book/user/${user.uid}`).
-                  //-     #[i.fa.fa-fw.fa-book]我的书架
-                  //-   a.dropdown-item(href=`/book/marks/user/${user.uid}`).
-                  //-     #[i.fa.fa-fw.fa-bookmark]我的收藏
-              li.nav-item.dropdown.mr-2
-                a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-                  #[i.fa.fa-fw] 问答
-                .dropdown-menu                  
-                  a.dropdown-item(href='/question/ask').
-                    #[i.fa.fa-fw.fa-question-circle] 提问
-                  a.dropdown-item(href='/question/answer').
-                    #[i.fa.fa-fw.fa-file-text] 回答
-                  a.dropdown-item(href='/question/article').
-                    #[i.fa.fa-fw.fa-pencil-square] 文章
-                  //- if user.isLogin
-                  //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
-                  //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
-              li.nav-item.dropdown.mr-2
-                a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-                  #[i.fa.fa-fw] 历史
-                .dropdown-menu                  
-                  a.dropdown-item(href='/question/ask').
-                    #[i.fa.fa-fw.fa-question-circle]
-                  a.dropdown-item(href='/question/answer').
-                    #[i.fa.fa-fw.fa-file-text] 回答
-                  a.dropdown-item(href='/question/article').
-                    #[i.fa.fa-fw.fa-pencil-square] 文章
-                  //- if user.isLogin//
-                  //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
-                  //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
-              form.d-none.d-lg-inline-block.mr-lg-4(action='/search' method='get')
-                .input-group
-                  input.form-control(type='text' name='q' placeholder='搜索问题或关键字')
-                  span.input-group-append
-                    button.btn.btn-primary(type='submit'): i.fa.fa-fw.fa-search
+    if minimal
+      block body
+    else   
+      block body
+        nav.navbar.navbar-expand-md.nav-dark.bg-dark
+          .container
+            a.navbar-brand(href='/')=  brand.name
+            button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
+              span.navbar-toggler-icon
+            #nav-links.collapse.navbar-collapse
+              ul.navbar-nav.mr-auto
+                li.nav-item.mr-2
+                  a.nav-link(href='#').
+                    #[i.fa.fa-fw]首页
+                li.nav-item.dropdown.mr-2
+                  a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+                    #[i.fa.fa-fw]读书
+                  .dropdown-menu                
+                    a.dropdown-item(href='/book/find').
+                      #[i.fa.fa-fw.fa-shopping-cart] 发现
+                    a.dropdown-item(href='/book/idea').
+                      #[i.fa.fa-fw.fa-pencil-square] 想法
+                    //- if user.isLogin
+                    //-   a.dropdown-item(href=`/book/user/${user.uid}`).
+                    //-     #[i.fa.fa-fw.fa-book]我的书架
+                    //-   a.dropdown-item(href=`/book/marks/user/${user.uid}`).
+                    //-     #[i.fa.fa-fw.fa-bookmark]我的收藏
+                li.nav-item.dropdown.mr-2
+                  a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+                    #[i.fa.fa-fw] 问答
+                  .dropdown-menu                  
+                    a.dropdown-item(href='/question/ask').
+                      #[i.fa.fa-fw.fa-question-circle] 提问
+                    a.dropdown-item(href='/question/answer').
+                      #[i.fa.fa-fw.fa-file-text] 回答
+                    a.dropdown-item(href='/question/article').
+                      #[i.fa.fa-fw.fa-pencil-square] 文章
+                    //- if user.isLogin
+                    //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
+                    //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
+                li.nav-item.dropdown.mr-2
+                  a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+                    #[i.fa.fa-fw] 历史
+                  .dropdown-menu                  
+                    a.dropdown-item(href='/question/ask').
+                      #[i.fa.fa-fw.fa-question-circle]
+                    a.dropdown-item(href='/question/answer').
+                      #[i.fa.fa-fw.fa-file-text] 回答
+                    a.dropdown-item(href='/question/article').
+                      #[i.fa.fa-fw.fa-pencil-square] 文章
+                    //- if user.isLogin//
+                    //-   a.dropdown-item(href=`/question/column/user/${user.uid}`).
+                    //-     #[i.fa.fa-fw.fa-bookmark]我的专栏
+                form.d-none.d-lg-inline-block.mr-lg-4(action='/search' method='get')
+                  .input-group
+                    input.form-control(type='text' name='q' placeholder='搜索问题或关键字')
+                    span.input-group-append
+                      button.btn.btn-primary(type='submit'): i.fa.fa-fw.fa-search
 
-            //if user.isLogin
-            //  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
-            //    span.navbar-toggler-icon
-            //  #nav-links.collapse.navbar-collapse
-            //    ul.navbar-nav.mr-auto
-            //      li.nav-item.dropdown.mr-2
-            //      li.nav-item.dropdown.mr-2
-            //        a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-            //          #[i.fa.fa-fw.fa-bell-o]
-            //      li.nav-item.dropdown.mr-2
-            //        a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
-            //          #[i.fa.fa-fw.fa-envelope-o]
-            //      li.nav-item.dropdown.mr-2
-            //        a.rounded-circle.nav-link.nav-item.dropdown-toggle(href='#' data-toggle='dropdown' style="background-image: url('https://sfault-avatar.b0.upaiyun.com/356/113/3561133448-58e8bdf9b711b_big64')")
-            //        .dropdown-menu
-            //          a.dropdown-item(href='/user').
-            //            #[i.fa.fa-fw.fa-search] 用户查询
-            //          a.dropdown-item(href='/user/new').
-            //            #[i.fa.fa-fw.fa-plus-circle] 新建用户
-            //          a.dropdown-item(href=`/user/${user.uid}/view`).
-            //            #[i.fa.fa-fw.fa-newspaper-o] 我的账号
-            //          a.dropdown-item(href='/user/account').
-            //            #[i.fa.fa-fw.fa-user-circle-o] 账号设置
-            //          a.dropdown-item(href='/admin/label').
-            //            #[i.fa.fa-fw.fa-tags] 管理标签
-            //          a.dropdown-item(href='/admin/theme').
-            //            #[i.fa.fa-fw.fa-cogs] 系统设置
-            //          a.dropdown-item(href='/auth/logout').
-            //            #[i.fa.fa-fw.fa-sign-out] 退出
-            //else
-            //  form.form-inline.my-2.my-lg-0(action='/auth/login' method='post')
-            //    input(type='hidden' name='_csrf' value=ctx.csrf)
-            //    input.form-control.col-sm-4(type='text' name='account' placeholder='账号' required)
-            //    input.form-control.col-sm-4.my-2.my-sm-0(type='password' name='password' placeholder='密码' required)
-            //    button.btn.btn-sucess.btn-block.col-sm-2(type='submit') 登录
-            //    button.btn.btn-sucess.btn-block.col-sm-2(type='button') 注册
-      main.container.mt-5.mb-5
-        block main
-    footer.navbar.navbar-expand-md.navbar-dark.bg-dark
-      .container.navbar-text
-        if company.url
-          a(href = company.url target ='_blank')= company.name
-        else
-          span = company.name
-        span.float-right
-          a.mr-1(href='http://jxdxsw.com' target='_blank')
-          span 友情关联
-    block foot 
+              //if user.isLogin
+              //  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#nav-links')
+              //    span.navbar-toggler-icon
+              //  #nav-links.collapse.navbar-collapse
+              //    ul.navbar-nav.mr-auto
+              //      li.nav-item.dropdown.mr-2
+              //      li.nav-item.dropdown.mr-2
+              //        a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+              //          #[i.fa.fa-fw.fa-bell-o]
+              //      li.nav-item.dropdown.mr-2
+              //        a.nav-link.dropdown-toggle(href='#' data-toggle='dropdown').
+              //          #[i.fa.fa-fw.fa-envelope-o]
+              //      li.nav-item.dropdown.mr-2
+              //        a.rounded-circle.nav-link.nav-item.dropdown-toggle(href='#' data-toggle='dropdown' style="background-image: url('https://sfault-avatar.b0.upaiyun.com/356/113/3561133448-58e8bdf9b711b_big64')")
+              //        .dropdown-menu
+              //          a.dropdown-item(href='/user').
+              //            #[i.fa.fa-fw.fa-search] 用户查询
+              //          a.dropdown-item(href='/user/new').
+              //            #[i.fa.fa-fw.fa-plus-circle] 新建用户
+              //          a.dropdown-item(href=`/user/${user.uid}/view`).
+              //            #[i.fa.fa-fw.fa-newspaper-o] 我的账号
+              //          a.dropdown-item(href='/user/account').
+              //            #[i.fa.fa-fw.fa-user-circle-o] 账号设置
+              //          a.dropdown-item(href='/admin/label').
+              //            #[i.fa.fa-fw.fa-tags] 管理标签
+              //          a.dropdown-item(href='/admin/theme').
+              //            #[i.fa.fa-fw.fa-cogs] 系统设置
+              //          a.dropdown-item(href='/auth/logout').
+              //            #[i.fa.fa-fw.fa-sign-out] 退出
+              //else
+              //  form.form-inline.my-2.my-lg-0(action='/auth/login' method='post')
+              //    input(type='hidden' name='_csrf' value=ctx.csrf)
+              //    input.form-control.col-sm-4(type='text' name='account' placeholder='账号' required)
+              //    input.form-control.col-sm-4.my-2.my-sm-0(type='password' name='password' placeholder='密码' required)
+              //    button.btn.btn-sucess.btn-block.col-sm-2(type='submit') 登录
+              //    button.btn.btn-sucess.btn-block.col-sm-2(type='button') 注册
+        main.container.mt-5.mb-5
+          block main
+      footer.navbar.navbar-expand-md.navbar-dark.bg-dark
+        .container.navbar-text
+          if company.url
+            a(href = company.url target ='_blank')= company.name
+          else
+            span = company.name
+          span.float-right
+            a.mr-1(href='http://jxdxsw.com' target='_blank')
+            span 友情关联
+      block foot 
       script(src='/public/js/jquery-3.2.1.min.js')
       script(src='/public/js/popper-1.12.9.min.js')
       script(src='/public/js/bootstrap-4.0.0-beta.3.min.js')
@@ -149,6 +152,8 @@ html(lang='zh')
       if g2
         script(src='/public/js/g2-3.0.4-beta.2.min.js')
         script(src='/public/js/data-set-0.8.3.min.js')
+        script.
+          G2.track(false) 
       if calendar
         script(src='/public/js/calendar-0.1.2.js')
       if summernote
